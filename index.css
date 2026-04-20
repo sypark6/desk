@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Cabinet Grotesk', sans-serif;
+    background-color: #f7f7f5;
+    color: #0f0f0d;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #d4d1cc; border-radius: 10px; }
+}
+
+@layer components {
+  /* Typography */
+  .font-display { font-family: 'Clash Display', sans-serif; }
+
+  /* Perm toggle */
+  .perm-toggle {
+    @apply relative inline-flex items-center w-9 h-5 rounded-full transition-colors duration-200 cursor-pointer border-0;
+  }
+  .perm-toggle::after {
+    content: '';
+    @apply absolute w-3.5 h-3.5 bg-white rounded-full shadow transition-all duration-200;
+  }
+  .perm-toggle.on { @apply bg-accent; }
+  .perm-toggle.on::after { @apply left-[18px]; }
+  .perm-toggle.off { @apply bg-border-2; }
+  .perm-toggle.off::after { @apply left-[3px]; }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-md;
+  }
+  .badge-dot { @apply w-1.5 h-1.5 rounded-full; }
+
+  .badge-urgent  { @apply bg-status-red-bg text-status-red border border-status-red-border; }
+  .badge-service { @apply bg-status-amber-bg text-status-amber border border-status-amber-border; }
+  .badge-product { @apply bg-status-blue-bg text-status-blue border border-status-blue-border; }
+  .badge-auto    { @apply bg-status-green-bg text-status-green border border-status-green-border; }
+  .badge-praise  { @apply bg-purple-50 text-purple-600 border border-purple-200; }
+  .badge-neutral { @apply bg-off-2 text-ink-3 border border-border; }
+
+  /* Platform chips */
+  .chip-fb { @apply bg-blue-50 text-blue-600 text-xs font-semibold px-2 py-0.5 rounded; }
+  .chip-ig { @apply bg-pink-50 text-pink-600 text-xs font-semibold px-2 py-0.5 rounded; }
+  .chip-li { @apply bg-sky-50 text-sky-700 text-xs font-semibold px-2 py-0.5 rounded; }
+  .chip-tt { @apply bg-gray-100 text-gray-700 text-xs font-semibold px-2 py-0.5 rounded; }
+
+  /* Cards */
+  .card {
+    @apply bg-white border border-border rounded-xl2 transition-colors duration-150;
+  }
+  .card-hover { @apply hover:border-border-2; }
+
+  /* Buttons */
+  .btn {
+    @apply font-body font-semibold rounded-lg cursor-pointer transition-all duration-150 border;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-white border-ink px-4 py-2.5 text-sm hover:bg-ink-2;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-white border-accent px-4 py-2.5 text-sm hover:bg-blue-700;
+  }
+  .btn-ghost {
+    @apply btn bg-white text-ink-2 border-border px-3 py-1.5 text-sm hover:bg-off hover:border-border-2;
+  }
+  .btn-approve {
+    @apply btn bg-status-green text-white border-status-green px-3 py-1.5 text-xs font-bold hover:bg-green-700;
+  }
+  .btn-reject {
+    @apply btn bg-status-red-bg text-status-red border-status-red-border px-3 py-1.5 text-xs font-bold;
+  }
+
+  /* Form inputs */
+  .input {
+    @apply w-full px-3.5 py-2.5 bg-off border border-border rounded-lg font-body text-sm text-ink
+           outline-none transition-all duration-150
+           focus:border-accent focus:shadow-[0_0_0_3px_rgba(26,26,255,0.08)] focus:bg-white;
+  }
+
+  /* Section label */
+  .section-label {
+    @apply text-xs font-bold tracking-widest uppercase text-ink-3 mb-4;
+  }
+
+  /* Comment card left border */
+  .card-urgent  { @apply border-l-[3px] border-l-status-red; }
+  .card-service { @apply border-l-[3px] border-l-status-amber; }
+  .card-product { @apply border-l-[3px] border-l-status-blue; }
+  .card-auto    { @apply border-l-[3px] border-l-status-green; }
+  .card-praise  { @apply border-l-[3px] border-l-purple-500; }
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up { animation: fadeUp 0.25s ease both; }
+.animate-fade-up-1 { animation: fadeUp 0.25s ease 0.05s both; }
+.animate-fade-up-2 { animation: fadeUp 0.25s ease 0.10s both; }
+.animate-fade-up-3 { animation: fadeUp 0.25s ease 0.15s both; }
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-modal { animation: modalIn 0.18s ease both; }
